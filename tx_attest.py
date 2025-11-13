@@ -117,6 +117,8 @@ def main():
     t0 = time.monotonic()
     txA = fetch_tx(wA, txh)
     txB = fetch_tx(wB, txh)
+        if "error" in txA: print(f"⚠️ RPC A error: {txA['error']}")
+    if "error" in txB: print(f"⚠️ RPC B error: {txB['error']}")
     elapsed = time.monotonic() - t0
 
     ok, info = compare_txs(txA, txB)
