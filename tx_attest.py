@@ -114,10 +114,10 @@ def main():
         sys.exit(3)
 
     print(f"🔍 Fetching transaction {txh}…")
-    t0 = time.monotonic()
+    t0 = time.time()
     txA = fetch_tx(wA, txh)
     txB = fetch_tx(wB, txh)
-    elapsed = time.monotonic() - t0
+    elapsed = time.time() - t0
 
     ok, info = compare_txs(txA, txB)
 
