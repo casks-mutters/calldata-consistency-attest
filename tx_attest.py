@@ -111,7 +111,7 @@ def main():
 
     if chainA != chainB:
         print("❌ chainId mismatch between RPC A and B — transaction views are not comparable.")
-        sys.exit(3)
+                sys.exit(3)
 
     print(f"🔍 Fetching transaction {txh}…")
     t0 = time.monotonic()
