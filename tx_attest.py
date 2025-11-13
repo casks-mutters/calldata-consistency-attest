@@ -49,13 +49,15 @@ def canonical_tx(tx: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 def fetch_tx(w3: Web3, tx_hash: str) -> Dict[str, Any]:
-    try:
-        tx = w3.eth.get_transaction(tx_hash)
-        if tx is None:
-            return {"error": "transaction not found"}
-        return canonical_tx(dict(tx))
-    except Exception as e:
-        return {"error": str(e)}
+    for _ in range(2):
+        try:
+            tx = w3.eth.get_transaction(tx_hash)
+            if tx is None:
+                return {"error": "transaction not found"}
+            return canonical_tx(dict(tx))
+        except Exception as e:
+            time.sleep(0.3)
+    return {"error": f"get_transaction failed after retries: {e}"}
 
 def compare_txs(tx_a: Dict[str, Any], tx_b: Dict[str, Any]):
     if "error" in tx_a or "error" in tx_b:
