@@ -10,8 +10,7 @@ DEFAULT_RPC_A = os.getenv("RPC_A", "https://mainnet.infura.io/v3/your_api_key")
 DEFAULT_RPC_B = os.getenv("RPC_B", "https://eth.llamarpc.com")
 
 def connect(url: str) -> Web3:
-    if " " in url:
-        print(f"⚠️ RPC URL contains whitespace: {url}")
+    if " " in url: print(f"⚠️ RPC URL contains whitespace: {url}")
     w3 = Web3(Web3.HTTPProvider(url, request_kwargs={"timeout": 20}))
     if not w3.is_connected():
         print(f"❌ Failed to connect: {url}")
