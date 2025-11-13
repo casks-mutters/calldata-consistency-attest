@@ -88,6 +88,9 @@ def main():
         sys.exit(1)
 
     txh = sys.argv[1]
+        if not (txh.startswith("0x") and len(txh) == 66):
+        print("❌ Invalid transaction hash; expected 0x + 64 hex chars.")
+        sys.exit(2)
     rpcA = sys.argv[2] if len(sys.argv) > 2 else DEFAULT_RPC_A
     rpcB = sys.argv[3] if len(sys.argv) > 3 else DEFAULT_RPC_B
 
