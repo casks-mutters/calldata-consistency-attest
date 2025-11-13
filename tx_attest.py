@@ -117,6 +117,7 @@ def main():
     t0 = time.monotonic()
     txA = fetch_tx(wA, txh)
     txB = fetch_tx(wB, txh)
+    if "429" in str(e) or "rate" in str(e).lower(): time.sleep(1.0)
     elapsed = time.monotonic() - t0
 
     ok, info = compare_txs(txA, txB)
