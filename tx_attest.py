@@ -124,6 +124,7 @@ def main():
     if ok:
         print("✅ Transaction views match across both providers.")
         print(f"🔏 Canonical tx root: {info['root']}")
+        print(f"🧩 Root check: {keccak_json(txA) == info['root']}")
     else:
         print("❌ Transaction views differ.")
         print(json.dumps(info, indent=2))
